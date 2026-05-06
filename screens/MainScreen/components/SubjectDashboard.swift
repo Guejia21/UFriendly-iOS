@@ -2,7 +2,8 @@ import SwiftUI
 
 
 struct SubjectDasboard: View {
-    let subjects: [String]  // Ejemplo de materias, debe crearse un modelo de datos para esto
+    let subjects: [Subject]  // TODO: Ejemplo de materias, debe crearse un modelo de datos para esto
+    let onViewAllClick: () -> Void = {} // TODO: Crear la función para esto
     var body: some View {
         VStack {
             HStack{
@@ -10,7 +11,7 @@ struct SubjectDasboard: View {
                     .font(.title)
                     .fontWeight(.semibold)
                 Button("Ver todas"){
-                        // Acción para ver todas las materias
+                    onViewAllClick()
                 }
             }
             VStack(alignment: .leading, spacing: 16) {
@@ -26,15 +27,21 @@ struct SubjectDasboard: View {
 }
 
 #Preview {
-    SubjectDasboard(subjects: ["Matemáticas", "Historia", "Ciencias", "Literatura", "Arte"])
+    SubjectDasboard(subjects: [
+        Subject(id: 1, name: "Matemáticas", teacher: "Prof. García", score: 8.5, completionPercentage: 75, color: "blue"),
+        Subject(id: 2, name: "Historia", teacher: "Prof. López", score: 9.0, completionPercentage: 80, color: "green"),
+        Subject(id: 3, name: "Ciencias", teacher: "Prof. Martínez", score: 8.0, completionPercentage: 70, color: "yellow"),
+        Subject(id: 4, name: "Literatura", teacher: "Prof. Rodríguez", score: 9.5, completionPercentage: 85, color: "purple"),
+        Subject(id: 5, name: "Arte", teacher: "Prof. Sánchez", score: 8.8, completionPercentage: 78, color: "pink")
+    ])
 }
 
 struct SubjectCard: View {
-    let subject: String
+    let subject: Subject
     let horarios: [String] = ["Lunes 10:00 - 11:00", "Miércoles 14:00 - 15:00"] // Ejemplo de horarios, debe crearse un modelo de datos para esto
     var body: some View {
         HStack {
-            Text(subject)
+            Text(subject.name)
                 .font(.headline)
             Spacer()
             Image(systemName: "clock")                

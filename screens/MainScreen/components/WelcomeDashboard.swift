@@ -2,6 +2,8 @@ import SwiftUI
 
 
 struct WelcomeDashboard: View {
+    let state: DashboardState // TODO: Importar el modelo de datos para esto
+    let onViewAllClick: () -> Void = {} // TODO: Crear la función para esto
     var body: some View {
         VStack {
             Text("¡Welcome!")
@@ -13,15 +15,15 @@ struct WelcomeDashboard: View {
                         .font(.title2)
                         .fontWeight(.semibold)
                     Button("Ver todas"){
-                        // Acción para ver todas las tareas
+                        onViewAllClick()
                     }
                 }
                 .padding(.bottom, 8)
                 HStack{
                     //Aqui van las tarjetas de pendientes, realizadas y vencidas
-                    TaskSummaryCard(title: "Pendientes", count: 5, color: .blue)
-                    TaskSummaryCard(title: "Realizadas", count: 10, color: .green)
-                    TaskSummaryCard(title: "Vencidas", count: 2, color: .red)
+                    TaskSummaryCard(title: "Pendientes", count: state.pendingTasks, iconName: "pause.fill", color: .blue)
+                    TaskSummaryCard(title: "Realizadas", count: state.completedTasks, iconName: "checkmark.circle", color: .green)
+                    TaskSummaryCard(title: "Vencidas", count: state.overdueTasks, iconName: "exclamationmark.triangle", color: .red)
                 }
             }
         }
@@ -30,17 +32,18 @@ struct WelcomeDashboard: View {
 }
 
 #Preview {
-    WelcomeDashboard()
+    WelcomeDashboard(state: DashboardState(pendingTasks: 5, completedTasks: 10, overdueTasks: 2))
 }
 
 struct TaskSummaryCard: View {
     let title: String
     let count: Int
+    let iconName: String = "pause.fill" // Ejemplo de icono, se puede personalizar según el tipo de tarea
     let color: Color
 
     var body: some View {
         VStack {
-            Image(systemName: "pause.fill")
+            Image(systemName: iconName)
                 .font(.largeTitle) // Adjusts the size
                 .foregroundColor(color) // Sets the icon color
             Text("\(count)")
@@ -55,5 +58,5 @@ struct TaskSummaryCard: View {
     }
 }
 #Preview {
-    TaskSummaryCard(title: "Pendientes", count: 5, color: .blue)
+    TaskSummaryCard(title: "Pendientes", count: 5, iconName: "pause.fill", color: .blue)
 }
