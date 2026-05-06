@@ -12,6 +12,7 @@ struct MainScreen: View {
             Spacer()
             SubjectDasboard(subjects: subjects)
         }
+        .background(Color.indigo)
     }
 }
 

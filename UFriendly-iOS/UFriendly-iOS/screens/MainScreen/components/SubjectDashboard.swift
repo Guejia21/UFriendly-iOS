@@ -6,20 +6,27 @@ struct SubjectDasboard: View {
     let onViewAllClick: () -> Void = {} // TODO: Crear la función para esto
     var body: some View {
         VStack {
-            HStack{
+            HStack(){
                 Text("Materias")
                     .font(.title)
                     .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                Spacer()
                 Button("Ver todas"){
                     onViewAllClick()
                 }
+                .padding()
+                .foregroundColor(.white)
+                .background(Color.pink, in: RoundedRectangle(cornerRadius: 12))
             }
+            .padding()
             VStack(alignment: .leading, spacing: 16) {
                 //Se hace un for para mostrar las 5 primeras materias
                 ForEach(0..<5) { index in 
                     SubjectCard(subject: subjects[index])
                 }
             }
+            .padding()
         }
         .background(.tint, in: RoundedRectangle(cornerRadius: 12))
         .padding()

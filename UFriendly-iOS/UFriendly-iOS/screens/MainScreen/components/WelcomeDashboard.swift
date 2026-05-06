@@ -5,27 +5,36 @@ struct WelcomeDashboard: View {
     let state: DashboardState // TODO: Importar el modelo de datos para esto
     let onViewAllClick: () -> Void = {} // TODO: Crear la función para esto
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("¡Welcome!")
                 .font(.title)
                 .fontWeight(.semibold)
+                .padding()
             VStack(alignment: .leading, spacing: 16) {
                 HStack{
                     Text("Resumen de tareas")
                         .font(.title2)
                         .fontWeight(.semibold)
+                    Spacer()
                     Button("Ver todas"){
                         onViewAllClick()
                     }
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color.pink, in: RoundedRectangle(cornerRadius: 12))
                 }
-                .padding(.bottom, 8)
+                .padding(.horizontal,12)
+                .padding(.top,4)
                 HStack{
                     //Aqui van las tarjetas de pendientes, realizadas y vencidas
                     TaskSummaryCard(title: "Pendientes", count: state.pendingTasks, iconName: "pause.fill", color: .blue)
                     TaskSummaryCard(title: "Realizadas", count: state.completedTasks, iconName: "checkmark.circle", color: .green)
                     TaskSummaryCard(title: "Vencidas", count: state.overdueTasks, iconName: "exclamationmark.triangle", color: .red)
                 }
+                .padding()
             }
+            .background(.white, in: RoundedRectangle(cornerRadius: 12))
+            .padding()
         }
         .background(.tint, in: RoundedRectangle(cornerRadius: 12))
         .padding()
