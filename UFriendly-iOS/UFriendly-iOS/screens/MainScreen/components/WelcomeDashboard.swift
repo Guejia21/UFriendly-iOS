@@ -29,6 +29,7 @@ struct WelcomeDashboard: View {
         }
         .background(.tint, in: RoundedRectangle(cornerRadius: 12))
         .padding()
+    }
 }
 
 #Preview {
@@ -38,7 +39,7 @@ struct WelcomeDashboard: View {
 struct TaskSummaryCard: View {
     let title: String
     let count: Int
-    let iconName: String = "pause.fill" // Ejemplo de icono, se puede personalizar según el tipo de tarea
+    let iconName: String // Ejemplo de icono, se puede personalizar según el tipo de tarea
     let color: Color
 
     var body: some View {

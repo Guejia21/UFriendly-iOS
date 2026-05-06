@@ -1,4 +1,5 @@
-struct Subject{
+import Foundation
+struct Task{
     let id: Int
     let name: String
     let description: String

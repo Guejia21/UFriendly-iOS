@@ -3,9 +3,9 @@ import SwiftUI
 
 struct TaskScreen: View {
     let taskList: [Task] // TODO: Importar el modelo de datos para esto
-
+    
     @State private var filterSelected:String = "Pending"
-    let filteredTasks: [Task] {
+    var filteredTasks: [Task] {
         switch filterSelected {
         case "Pending":
             return taskList.filter { !$0.isDone }
@@ -16,11 +16,19 @@ struct TaskScreen: View {
         default:
             return taskList
         }
-    } 
+    }
     //Separar tareas entre hoy, pendientes y vencidas
-    let todayTasks: [Task] = taskList.filter { isToday(date: $0.dueDate)}
-    let pendingTasks: [Task] = taskList.filter { !isToday(date: $0.dueDate) && !isExpired(date: $0.dueDate) }
-    let overdueTasks: [Task] = taskList.filter { isExpired(date: $0.dueDate) }
+    var todayTasks: [Task] {
+        taskList.filter { isToday(date: $0.dueDate) }
+    }
+
+    var pendingTasks: [Task] {
+        taskList.filter { !isToday(date: $0.dueDate) && !isExpired(date: $0.dueDate) }
+    }
+
+    var overdueTasks: [Task] {
+        taskList.filter { isExpired(date: $0.dueDate) }
+    }
     var body: some View {
         VStack {
             //Aquí va el filtro para las tareas
@@ -39,36 +47,31 @@ struct TaskScreen: View {
                     filterSelected = "Overdue"
                 }
             }
-        if (todayTasks.count > 0) {
-            Text("Hoy")
-                .font(.title2)
-                .fontWeight(.semibold)
-            ForEach(todayTasks) { task in
-                TaskCard(task: task)
+            if (todayTasks.count > 0) {
+                Text("Hoy")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                TaskSection(title: "Hoy", tasks: todayTasks)
             }
-        }
-        if (pendingTasks.count > 0) {
-            Text("Pendientes")
-                .font(.title2)
-                .fontWeight(.semibold)
-            ForEach(pendingTasks) { task in
-                TaskCard(task: task)
+            if (pendingTasks.count > 0) {
+                Text("Pendientes")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                TaskSection(title: "Pendientes", tasks: pendingTasks)
             }
-        }
-        if (overdueTasks.count > 0) {
-            Text("Vencidas")
-                .font(.title2)
-                .fontWeight(.semibold)
-            ForEach(overdueTasks) { task in
-                TaskCard(task: task)
+            if (overdueTasks.count > 0) {
+                Text("Vencidas")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                TaskSection(title: "Vencidas", tasks: pendingTasks)
             }
-        }
-        //Mensaje vacío
-        if(filteredTasks.count == 0) {
-            Text("No hay tareas para mostrar")
-                .font(.title2)
-                .fontWeight(.semibold)
-                .foregroundColor(.gray)
+            //Mensaje vacío
+            if(filteredTasks.count == 0) {
+                Text("No hay tareas para mostrar")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.gray)
+            }
         }
     }
 }
@@ -88,8 +91,7 @@ func isExpired(date:Date?)->Bool{
     let tasks = [
         Task(id: 1, name: "Tarea 1", description: "Descripción de la tarea 1", dueDate: Date().addingTimeInterval(3600), isDone: false, subjectId: 1),
         Task(id: 2, name: "Tarea 2", description: "Descripción de la tarea 2", dueDate: Date().addingTimeInterval(-3600), isDone: false, subjectId: 2),
-        Task(id: 3, name: "Tarea 3", description: "Descripción de la tarea 3", dueDate: Date().addingTimeInterval(7200), isDone: true, subjectId: 3),
-        Task(id: 4, name: "Tarea 4", description: "Descripción de la tarea 4", dueDate: nil, isDone: false, subjectId: nil)
+        Task(id: 3, name: "Tarea 3", description: "Descripción de la tarea 3", dueDate: Date().addingTimeInterval(7200), isDone: true, subjectId: 3)
     ]
     TaskScreen(taskList: tasks)
 }
