@@ -25,7 +25,7 @@ struct SubjectCard: View {
 
                 VStack {
 
-                    Text("\(subject.progress)%")
+                    Text("\(subject.completionPercentage)%")
                         .font(.largeTitle)
                         .bold()
                         .foregroundColor(.white)
@@ -39,7 +39,7 @@ struct SubjectCard: View {
             Text(subject.schedule)
                 .foregroundColor(.white)
 
-            Text(subject.professor)
+            Text(subject.teacher)
                 .foregroundColor(.white)
 
             Text("Score: \(subject.score, specifier: "%.2f")")
