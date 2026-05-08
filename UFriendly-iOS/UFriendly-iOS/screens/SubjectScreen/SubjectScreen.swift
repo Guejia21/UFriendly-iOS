@@ -18,7 +18,6 @@ struct SubjectsView: View {
             score: 0.0,
             completionPercentage: 0,
             color: "color",
-            schedule: "Monday: 7:00 AM - 9:00 AM",
         )
     ]
 

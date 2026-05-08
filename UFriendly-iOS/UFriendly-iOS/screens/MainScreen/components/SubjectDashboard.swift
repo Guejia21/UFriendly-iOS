@@ -32,7 +32,7 @@ struct SubjectDasboard: View {
         .padding()
     }
 }
-
+/*
 #Preview {
     SubjectDasboard(subjects: [
         Subject(name: "Matemáticas", teacher: "Prof. García", score: 8.5, completionPercentage: 75, color: "blue",  schedule:"Lunes 9am 11am"),
@@ -42,7 +42,7 @@ struct SubjectDasboard: View {
         Subject(name: "Arte", teacher: "Prof. Sánchez", score: 8.8, completionPercentage: 78, color: "pink",schedule:"Lunes 9am 11am")
     ])
 }
-/**
+
  
  
  struct SubjectCard: View {

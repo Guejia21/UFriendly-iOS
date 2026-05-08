@@ -12,12 +12,13 @@ struct TaskSection: View {
     }
     
 }
-
-#Preview {
-    let tasks = [
-        Task(id: 1, name: "Tarea 1", description: "Descripción de la tarea 1", dueDate: Date().addingTimeInterval(3600), isDone: false, subjectId: 1),
-        Task(id: 2, name: "Tarea 2", description: "Descripción de la tarea 2", dueDate: Date().addingTimeInterval(-3600), isDone: false, subjectId: 2),
-        Task(id: 3, name: "Tarea 3", description: "Descripción de la tarea 3", dueDate: Date().addingTimeInterval(7200), isDone: true, subjectId: 3)
-    ]
-    TaskSection(title: "Hoy", tasks: tasks)
-}
+/*
+ #Preview {
+ let tasks = [
+ Task(id: 1, name: "Tarea 1", description: "Descripción de la tarea 1", dueDate: Date().addingTimeInterval(3600), isDone: false, subjectId: 1),
+ Task(id: 2, name: "Tarea 2", description: "Descripción de la tarea 2", dueDate: Date().addingTimeInterval(-3600), isDone: false, subjectId: 2),
+ Task(id: 3, name: "Tarea 3", description: "Descripción de la tarea 3", dueDate: Date().addingTimeInterval(7200), isDone: true, subjectId: 3)
+ ]
+ TaskSection(title: "Hoy", tasks: tasks)
+ }
+ */

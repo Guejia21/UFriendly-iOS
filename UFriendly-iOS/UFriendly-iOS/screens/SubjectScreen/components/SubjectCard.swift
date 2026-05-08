@@ -36,7 +36,7 @@ struct SubjectCard: View {
                 }
             }
 
-            Text(subject.schedule)
+            //Text(subject.schedule)
                 .foregroundColor(.white)
 
             Text(subject.teacher)

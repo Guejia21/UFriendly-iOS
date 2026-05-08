@@ -5,7 +5,7 @@ import SwiftData
 final class Task: Identifiable {
     @Attribute(.unique) var id: UUID = UUID()
     var name: String
-    var description: String
+    var taskDescription: String
     var dueDate: Date?
     var isDone: Bool
     
@@ -15,7 +15,7 @@ final class Task: Identifiable {
     init(name: String, description: String, dueDate: Date? = nil, 
          isDone: Bool = false, subject: Subject? = nil) {
         self.name = name
-        self.description = description
+        self.taskDescription = description
         self.dueDate = dueDate
         self.isDone = isDone
         self.subject = subject
