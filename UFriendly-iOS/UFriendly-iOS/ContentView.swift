@@ -30,5 +30,5 @@ struct ContentView: View {
 }
 #Preview {
     ContentView()
-        .modelContainer(for: [Subject.self, Task.self], inMemory: true)
+        .modelContainer(for: [Subject.self, Task.self, ClassSchedule.self, Grade.self], inMemory: true)
 }
