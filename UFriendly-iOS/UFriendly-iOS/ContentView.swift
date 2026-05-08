@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Query private var subjects: [Subject]
+    @Query private var tasks: [Task]
+    @Environment(\.modelContext) private var context
+    let pendingTasks: Int = tasks.filter { !$0.isDone }.count
+    let completedTasks: Int = tasks.filter { $0.isDone }.count
+    let overdueTasks: Int = tasks.filter { !$0.isDone && ($0.dueDate ?? Date()) < Date() }.count
+    
+    let dashboardState: DashboardState = DashboardState(pendingTasks: pendingTasks, completedTasks: completedTasks, overdueTasks: overdueTasks)
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        MainScreen(state:dashboardState, subjects: subjects)
     }
 }
 
