@@ -3,12 +3,10 @@ import SwiftData
 
 @Model
 final class ClassSchedule: Identifiable {
-    @Attribute(.unique) var id: UUID = UUID()
+    @Attribute(.unique) var id: UUID = UUID() 
     var day: String
     var startHour: String
     var endHour: String
-    
-    // Relación con Subject
     var subject: Subject?
     
     init(day: String, startHour: String, endHour: String, subject: Subject? = nil) {
