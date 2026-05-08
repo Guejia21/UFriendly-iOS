@@ -33,17 +33,16 @@ struct TaskScreen: View {
         VStack {
             //Aquí va el filtro para las tareas
             HStack {
-                //TODO: Configurar para que cuando el boton este presionado cambie de color
-                Button("Pendientes") {
+                PersonalizedButton(label:"Pendientes") {
                     filterSelected = "Pending"
                 }
-                Button("Todas") {
+                PersonalizedButton(label:"Todas") {
                     filterSelected = "All"
                 }
-                Button("Realizadas") {
+                PersonalizedButton(label:"Realizadas") {
                     filterSelected = "Completed"
                 }
-                Button("Vencidas") {
+                PersonalizedButton(label:"Vencidas") {
                     filterSelected = "Overdue"
                 }
             }

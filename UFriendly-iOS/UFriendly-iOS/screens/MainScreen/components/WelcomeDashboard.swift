@@ -10,18 +10,16 @@ struct WelcomeDashboard: View {
                 .font(.title)
                 .fontWeight(.semibold)
                 .padding()
-            VStack(alignment: .leading, spacing: 16) {
+                .foregroundStyle(.white)
+            VStack(alignment: .leading) {
                 HStack{
                     Text("Resumen de tareas")
                         .font(.title2)
                         .fontWeight(.semibold)
                     Spacer()
-                    Button("Ver todas"){
+                    PersonalizedButton(label:"Ver todas"){
                         onViewAllClick()
                     }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.pink, in: RoundedRectangle(cornerRadius: 12))
                 }
                 .padding(.horizontal,12)
                 .padding(.top,4)
@@ -31,12 +29,13 @@ struct WelcomeDashboard: View {
                     TaskSummaryCard(title: "Realizadas", count: state.completedTasks, iconName: "checkmark.circle", color: .green)
                     TaskSummaryCard(title: "Vencidas", count: state.overdueTasks, iconName: "exclamationmark.triangle", color: .red)
                 }
+                .aspectRatio(contentMode: .fit)
                 .padding()
             }
             .background(.white, in: RoundedRectangle(cornerRadius: 12))
             .padding()
         }
-        .background(.tint, in: RoundedRectangle(cornerRadius: 12))
+        .background(.primaryC, in: RoundedRectangle(cornerRadius: 12))
         .padding()
     }
 }
@@ -58,13 +57,14 @@ struct TaskSummaryCard: View {
                 .foregroundColor(color) // Sets the icon color
             Text("\(count)")
                 .font(.largeTitle)
-                .fontWeight(.bold)                
+                .fontWeight(.bold)
             Text(title)
                 .font(.headline)
+                .aspectRatio(contentMode: .fill)
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: 100,maxHeight: 100)
         .padding()
-        .background(.gray, in: RoundedRectangle(cornerRadius: 12))
+        .background(.secondaryContainer, in: RoundedRectangle(cornerRadius: 12))
     }
 }
 #Preview {

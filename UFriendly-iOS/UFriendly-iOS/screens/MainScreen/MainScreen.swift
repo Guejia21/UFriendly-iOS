@@ -8,10 +8,9 @@ struct MainScreen: View {
     var body: some View {
         VStack {
             WelcomeDashboard(state: state)
-            Spacer()
             SubjectDasboard(subjects: subjects)
         }
-        .background(Color.indigo)
+        .background(.primaryContainer)
     }
 }
 

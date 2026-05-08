@@ -1,7 +1,7 @@
 import SwiftUI
 
 
-struct Button: View {
+struct PersonalizedButton: View {
     let label: String
     let onClick: () -> Void
 
@@ -10,7 +10,7 @@ struct Button: View {
             onClick()
         }
         .padding()
-        .foregroundColor(.white)
+        .foregroundColor(.black)
         .background(.tertiaryContainer, in: RoundedRectangle(cornerRadius: 12))
     }
 }

@@ -12,7 +12,7 @@ struct SubjectDasboard: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                 Spacer()
-                Button("Ver todas"){
+                PersonalizedButton(label:"Ver todas"){
                     onViewAllClick()
                 }
                 .padding()
