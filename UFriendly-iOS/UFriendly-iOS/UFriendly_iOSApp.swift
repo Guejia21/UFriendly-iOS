@@ -1,11 +1,5 @@
-//
-//  UFriendly_iOSApp.swift
-//  UFriendly-iOS
-//
-//  Created by MAC15 on 6/05/26.
-//
-
 import SwiftUI
+import SwiftData
 
 @main
 struct UFriendly_iOSApp: App {
@@ -13,5 +7,6 @@ struct UFriendly_iOSApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [Subject.self, Task.self, ClassSchedule.self, Grade.self])
     }
 }

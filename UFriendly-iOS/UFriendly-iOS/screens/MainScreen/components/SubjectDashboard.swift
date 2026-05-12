@@ -2,8 +2,8 @@ import SwiftUI
 
 struct SubjectDasboard: View {
     let subjects: [Subject]
-    let onViewAllClick: () -> Void = {}
-    
+    let onViewAllClick: () -> Void
+
     var body: some View {
         VStack {
             HStack {
@@ -12,23 +12,20 @@ struct SubjectDasboard: View {
                     .fontWeight(.semibold)
                     .foregroundColor(.white)
                 Spacer()
-                PersonalizedButton(label:"Ver todas") {
+                PersonalizedButton(label: "Ver todas") {
                     onViewAllClick()
                 }
-                .padding()
                 .foregroundColor(.white)
-                .background(Color.pink, in: RoundedRectangle(cornerRadius: 12))
             }
             .padding()
-            
+
             VStack(alignment: .leading, spacing: 16) {
                 if subjects.isEmpty {
                     Text("No hay materias registradas")
                         .foregroundColor(.gray)
                         .padding()
                 } else {
-                    // Toma los primeros 5 (o menos si no hay 5)
-                    ForEach(Array(subjects.prefix(5)), id: \.self) { subject in 
+                    ForEach(Array(subjects.prefix(5)), id: \.id) { subject in
                         SubjectCard(subject: subject)
                     }
                 }
@@ -38,4 +35,14 @@ struct SubjectDasboard: View {
         .background(.tint, in: RoundedRectangle(cornerRadius: 12))
         .padding()
     }
+}
+
+#Preview {
+    SubjectDasboard(
+        subjects: [
+            Subject(name: "Math", teacher: "Prof. Lopez", score: 8.5, completionPercentage: 75, color: "blue"),
+            Subject(name: "Science", teacher: "Prof. Perez", score: 9.0, completionPercentage: 80, color: "green"),
+        ],
+        onViewAllClick: {}
+    )
 }

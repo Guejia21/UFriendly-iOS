@@ -1,30 +1,32 @@
 import SwiftUI
 
-
 struct MainScreen: View {
-    let state: DashboardState // TODO: Importar el modelo de datos para esto
-    let subjects:[Subject]
-    
+    let state: DashboardState
+    let subjects: [Subject]
+    let onViewAllTasks: () -> Void
+    let onViewAllSubjects: () -> Void
+
     var body: some View {
-        VStack {
-            WelcomeDashboard(state: state)
-            SubjectDasboard(subjects: subjects)
+        ScrollView {
+            VStack(spacing: 0) {
+                WelcomeDashboard(state: state, onViewAllClick: onViewAllTasks)
+                SubjectDasboard(subjects: subjects, onViewAllClick: onViewAllSubjects)
+            }
         }
         .background(.primaryContainer)
+        .navigationTitle("Welcome")
     }
 }
 
-
- 
- 
- #Preview {
- let subjects = [
- Subject(name: "Matemáticas", teacher: "Prof. García", score: 8.5, completionPercentage: 75, color: "blue"),
- Subject(name: "Historia", teacher: "Prof. López", score: 9.0, completionPercentage: 80, color: "green"),
- Subject(name: "Ciencias", teacher: "Prof. Martínez", score: 8.0, completionPercentage: 70, color: "yellow"),
- Subject(name: "Literatura", teacher: "Prof. Rodríguez", score: 9.5, completionPercentage: 85, color: "purple"),
- Subject(name: "Arte", teacher: "Prof. Sánchez", score: 8.8, completionPercentage: 78, color: "pink")
- ]
- MainScreen(state: DashboardState(pendingTasks: 5, completedTasks: 10, overdueTasks: 2), subjects: subjects)
- }
- 
+#Preview {
+    let subjects = [
+        Subject(name: "Matematicas", teacher: "Prof. Garcia", score: 8.5, completionPercentage: 75, color: "blue"),
+        Subject(name: "Historia", teacher: "Prof. Lopez", score: 9.0, completionPercentage: 80, color: "green"),
+    ]
+    MainScreen(
+        state: DashboardState(pendingTasks: 5, completedTasks: 10, overdueTasks: 2),
+        subjects: subjects,
+        onViewAllTasks: {},
+        onViewAllSubjects: {}
+    )
+}

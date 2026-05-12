@@ -1,30 +1,29 @@
 import SwiftUI
 
-
 struct WelcomeDashboard: View {
-    let state: DashboardState // TODO: Importar el modelo de datos para esto
-    let onViewAllClick: () -> Void = {} // TODO: Crear la función para esto
+    let state: DashboardState
+    let onViewAllClick: () -> Void
+
     var body: some View {
         VStack(alignment: .leading) {
-            Text("¡Welcome!")
+            Text("!Welcome!")
                 .font(.title)
                 .fontWeight(.semibold)
                 .padding()
                 .foregroundStyle(.white)
             VStack(alignment: .leading) {
-                HStack{
+                HStack {
                     Text("Resumen de tareas")
                         .font(.title2)
                         .fontWeight(.semibold)
                     Spacer()
-                    PersonalizedButton(label:"Ver todas"){
+                    PersonalizedButton(label: "Ver todas") {
                         onViewAllClick()
                     }
                 }
-                .padding(.horizontal,12)
-                .padding(.top,4)
-                HStack{
-                    //Aqui van las tarjetas de pendientes, realizadas y vencidas
+                .padding(.horizontal, 12)
+                .padding(.top, 4)
+                HStack {
                     TaskSummaryCard(title: "Pendientes", count: state.pendingTasks, iconName: "pause.fill", color: .blue)
                     TaskSummaryCard(title: "Realizadas", count: state.completedTasks, iconName: "checkmark.circle", color: .green)
                     TaskSummaryCard(title: "Vencidas", count: state.overdueTasks, iconName: "exclamationmark.triangle", color: .red)
@@ -41,20 +40,20 @@ struct WelcomeDashboard: View {
 }
 
 #Preview {
-    WelcomeDashboard(state: DashboardState(pendingTasks: 5, completedTasks: 10, overdueTasks: 2))
+    WelcomeDashboard(state: DashboardState(pendingTasks: 5, completedTasks: 10, overdueTasks: 2), onViewAllClick: {})
 }
 
 struct TaskSummaryCard: View {
     let title: String
     let count: Int
-    let iconName: String // Ejemplo de icono, se puede personalizar según el tipo de tarea
+    let iconName: String
     let color: Color
 
     var body: some View {
         VStack {
             Image(systemName: iconName)
-                .font(.largeTitle) // Adjusts the size
-                .foregroundColor(color) // Sets the icon color
+                .font(.largeTitle)
+                .foregroundColor(color)
             Text("\(count)")
                 .font(.largeTitle)
                 .fontWeight(.bold)
@@ -62,11 +61,12 @@ struct TaskSummaryCard: View {
                 .font(.headline)
                 .aspectRatio(contentMode: .fill)
         }
-        .frame(maxWidth: 100,maxHeight: 100)
+        .frame(maxWidth: 100, maxHeight: 100)
         .padding()
         .background(.secondaryContainer, in: RoundedRectangle(cornerRadius: 12))
     }
 }
+
 #Preview {
     TaskSummaryCard(title: "Pendientes", count: 5, iconName: "pause.fill", color: .blue)
 }
