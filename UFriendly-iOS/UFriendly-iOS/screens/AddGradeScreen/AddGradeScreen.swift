@@ -83,7 +83,7 @@ struct AddGradeScreen: View {
             let totalWeight = min(subject.grades.reduce(0) { $0 + $1.weight }, 1.0)
             let score = subject.grades.reduce(0) { $0 + $1.value * $1.weight }
             subject.score = score
-            subject.completionPercentage = Int(totalWeight * 100)
+            subject.completionPercentage = min(Int(round(totalWeight * 100)), 100)
         }
 
         try? context.save()
