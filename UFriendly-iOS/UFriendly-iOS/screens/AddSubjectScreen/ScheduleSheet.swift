@@ -2,21 +2,21 @@ import SwiftUI
 
 struct ScheduleSheet: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedDays: Set<String> = []
+    @State private var selectedDay: String?
     @State private var startHour: String?
     @State private var endHour: String?
 
     let onAdd: (String, String, String) -> Void
 
     var isValid: Bool {
-        !selectedDays.isEmpty && startHour != nil && endHour != nil
+        selectedDay != nil && startHour != nil && endHour != nil
     }
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("Days") {
-                    DaySelector(selectedDays: $selectedDays)
+                    DaySelector(selectedDay: $selectedDay)
                 }
                 Section("Hours") {
                     HourPicker(label: "Start", selectedHour: $startHour)
@@ -31,7 +31,7 @@ struct ScheduleSheet: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
-                        for day in selectedDays {
+                        if let day = selectedDay {
                             onAdd(day, startHour!, endHour!)
                         }
                         dismiss()
