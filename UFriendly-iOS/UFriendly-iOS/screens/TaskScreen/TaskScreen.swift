@@ -61,8 +61,7 @@ struct TaskScreen: View {
                             title: "Hoy",
                             tasks: todayTasks,
                             onCheckedChange: handleTaskCheck,
-                            onDelete: handleTaskDelete,
-                            onItemClick: { task in }
+                            onDelete: handleTaskDelete,                
                         )
                     }
                     if !upcomingTasks.isEmpty {
@@ -70,8 +69,7 @@ struct TaskScreen: View {
                             title: "Proximas",
                             tasks: upcomingTasks,
                             onCheckedChange: handleTaskCheck,
-                            onDelete: handleTaskDelete,
-                            onItemClick: { task in }
+                            onDelete: handleTaskDelete,                        
                         )
                     }
                     if !lateTasks.isEmpty {
@@ -80,7 +78,6 @@ struct TaskScreen: View {
                             tasks: lateTasks,
                             onCheckedChange: handleTaskCheck,
                             onDelete: handleTaskDelete,
-                            onItemClick: { task in }
                         )
                     }
                     if filteredTasks.isEmpty {

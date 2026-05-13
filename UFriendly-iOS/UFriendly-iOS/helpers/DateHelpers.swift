@@ -1,6 +1,7 @@
 import Foundation
 
 func isToday(date: Date?) -> Bool {
+    //Se usa el guard let para verificar si la fecha es nula. Si lo es, se devuelve false.
     guard let date = date else { return false }
     return Calendar.current.isDateInToday(date)
 }

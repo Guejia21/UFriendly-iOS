@@ -4,7 +4,6 @@ struct TaskItem: View {
     let task: Task
     let onCheckedChange: (Bool) -> Void
     let onDelete: () -> Void
-    let onItemClick: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -45,7 +44,6 @@ struct TaskItem: View {
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
             .contentShape(Rectangle())
-            .onTapGesture(perform: onItemClick)
         }
         .background(Color(.systemBackground))
     }
@@ -69,7 +67,6 @@ struct TaskItem: View {
         task: task,
         onCheckedChange: { _ in },
         onDelete: { },
-        onItemClick: { }
     )
     .modelContainer(container)
     .padding()

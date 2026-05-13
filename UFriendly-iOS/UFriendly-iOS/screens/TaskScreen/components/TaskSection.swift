@@ -5,7 +5,6 @@ struct TaskSection: View {
     let tasks: [Task]
     let onCheckedChange: (Task, Bool) -> Void
     let onDelete: (Task) -> Void
-    let onItemClick: (Task) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -18,18 +17,17 @@ struct TaskSection: View {
             
             VStack(spacing: 4) {
                 ForEach(tasks, id: \.id) { task in
-                    TaskItem(
-                        task: task,
-                        onCheckedChange: { isChecked in
-                            onCheckedChange(task, isChecked)
-                        },
-                        onDelete: {
-                            onDelete(task)
-                        },
-                        onItemClick: {
-                            onItemClick(task)
-                        }
-                    )
+                    NavigationLink(destination: TaskDetailScreen(task: task)) {
+                        TaskItem(
+                            task: task,
+                            onCheckedChange: { isChecked in
+                                onCheckedChange(task, isChecked)
+                            },
+                            onDelete: {
+                                onDelete(task)
+                            },                        
+                        )
+                    }.buttonStyle(.plain)
                 }
             }
         }
@@ -55,8 +53,7 @@ struct TaskSection: View {
         title: "Hoy",
         tasks: tasks,
         onCheckedChange: { _, _ in },
-        onDelete: { _ in },
-        onItemClick: { _ in }
+        onDelete: { _ in }
     )
     .modelContainer(container)
     .padding()
