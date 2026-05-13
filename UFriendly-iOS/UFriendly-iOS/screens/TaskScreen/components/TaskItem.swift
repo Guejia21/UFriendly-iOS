@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct TaskItem: View {
     let task: Task
@@ -63,10 +64,10 @@ struct TaskItem: View {
     let subject = Subject(name: "Matemáticas", teacher: "Prof. García", score: 8.5, completionPercentage: 75, color: "blue")
     let task = Task(name: "Tarea de cálculo", description: "Resolver ejercicios 1-10", dueDate: Date(), isDone: false, subject: subject)
     
-    return TaskItem(
+    TaskItem(
         task: task,
         onCheckedChange: { _ in },
-        onDelete: { },
+        onDelete: { }
     )
     .modelContainer(container)
     .padding()

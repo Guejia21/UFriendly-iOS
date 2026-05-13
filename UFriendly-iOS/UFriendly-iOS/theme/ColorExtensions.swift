@@ -23,11 +23,6 @@ extension Color {
         )
     }
 
-    static let primaryC = Color("primaryC")
-    static let primaryContainer = Color("PrimaryContainer")
-    static let secondaryContainer = Color("secondaryContainer")
-    static let tertiaryContainer = Color("tertiaryContainer")
-
     static let subjectColors: [Color] = [
         .blue, .red, .orange, .purple,
         Color(hex: "C084FC"), .green, .yellow, .pink,

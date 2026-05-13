@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 struct TaskSection: View {
     let title: String
@@ -49,7 +50,7 @@ struct TaskSection: View {
         Task(name: "Proyecto final", description: "Desc", dueDate: Date(), isDone: true, subject: subject)
     ]
     
-    return TaskSection(
+    TaskSection(
         title: "Hoy",
         tasks: tasks,
         onCheckedChange: { _, _ in },
