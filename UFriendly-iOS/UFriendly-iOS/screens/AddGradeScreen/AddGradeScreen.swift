@@ -52,6 +52,7 @@ struct AddGradeScreen: View {
                 }
             }
         }
+        .background(.primaryContainer)
         .navigationTitle("Add Grade")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

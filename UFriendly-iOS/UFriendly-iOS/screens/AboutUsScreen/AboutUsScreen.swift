@@ -53,6 +53,7 @@ struct AboutUsScreen: View {
                 Spacer()
             }
         }
+        .background(.primaryContainer)
         .navigationTitle("Credits")
     }
 }

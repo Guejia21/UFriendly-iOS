@@ -37,6 +37,7 @@ struct AddSubjectScreen: View {
                 }
             }
         }
+        .background(.primaryContainer)
         .navigationTitle("Add Subject")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

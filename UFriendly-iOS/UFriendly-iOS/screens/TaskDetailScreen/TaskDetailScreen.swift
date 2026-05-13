@@ -87,6 +87,7 @@ struct TaskDetailScreen: View {
                 .padding(.horizontal)
             }
         }
+        .background(.primaryContainer)
         .navigationTitle("Task Details")
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -103,7 +104,6 @@ struct TaskDetailScreen: View {
     }
 
     private func deleteTask() {
-        NotificationManager.cancelReminder(taskId: task.id)
         context.delete(task)
         try? context.save()
         dismiss()

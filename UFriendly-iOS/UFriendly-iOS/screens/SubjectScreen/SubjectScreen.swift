@@ -50,6 +50,7 @@ struct SubjectScreen: View {
                 }
             }
         }
+        .background(.primaryContainer)
         .navigationTitle("Subjects")
     }
 }

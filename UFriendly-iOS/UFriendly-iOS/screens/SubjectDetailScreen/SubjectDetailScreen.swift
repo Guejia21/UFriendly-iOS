@@ -62,6 +62,7 @@ struct SubjectDetailScreen: View {
             }
             .padding(.vertical)
         }
+        .background(.primaryContainer)
         .navigationTitle(subject.name)
         .task {
             await loadBooks()

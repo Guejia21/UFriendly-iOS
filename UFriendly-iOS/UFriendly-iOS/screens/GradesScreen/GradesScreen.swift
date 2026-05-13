@@ -58,19 +58,8 @@ struct GradesScreen: View {
                 }
             }
         }
+        .background(.primaryContainer)
         .navigationTitle("Grades")
-        .toolbar {
-            ToolbarItem(placement: .primaryAction) {
-                Button(action: { showAddGrade = true }) {
-                    Image(systemName: "plus")
-                }
-                .disabled(subjects.isEmpty)
-            }
-        }
-        .sheet(isPresented: $showAddGrade) {
-            NavigationStack {
-                AddGradeScreen()
-            }
-        }
+        
     }
 }

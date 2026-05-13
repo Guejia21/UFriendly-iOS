@@ -32,7 +32,7 @@ struct SubjectDasboard: View {
             }
             .padding()
         }
-        .background(.tint, in: RoundedRectangle(cornerRadius: 12))
+        .background(.primaryC, in: RoundedRectangle(cornerRadius: 12))
         .padding()
     }
 }

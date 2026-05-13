@@ -6,9 +6,6 @@ struct SubjectCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Circle()
-                    .fill(Color(hex: subject.color))
-                    .frame(width: 12, height: 12)
                 Text(subject.name)
                     .font(.title2)
                     .foregroundColor(.white)
@@ -40,7 +37,7 @@ struct SubjectCard: View {
                 .foregroundColor(.white)
         }
         .padding()
-        .background(Color.orange)
+        .background(Color(hex: subject.color))
         .cornerRadius(20)
         .padding(.horizontal, 4)
     }

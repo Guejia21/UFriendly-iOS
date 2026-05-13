@@ -14,7 +14,6 @@ struct MainScreen: View {
             }
         }
         .background(.primaryContainer)
-        .navigationTitle("Welcome")
     }
 }
 

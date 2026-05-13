@@ -40,6 +40,7 @@ struct AddTaskScreen: View {
                 }
             }
         }
+        .background(.primaryContainer)
         .navigationTitle("Add Task")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -63,9 +64,6 @@ struct AddTaskScreen: View {
             subject: subject
         )
         context.insert(task)
-        if let dueDate = dueDate {
-            NotificationManager.scheduleReminder(taskId: task.id, taskName: name, dueDate: dueDate)
-        }
         try? context.save()
         dismiss()
     }
