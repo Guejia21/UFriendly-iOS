@@ -1,0 +1,44 @@
+import SwiftUI
+
+struct ScheduleSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var selectedDay: String?
+    @State private var startHour: String?
+    @State private var endHour: String?
+
+    let onAdd: (String, String, String) -> Void
+
+    var isValid: Bool {
+        selectedDay != nil && startHour != nil && endHour != nil
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("Days") {
+                    DaySelector(selectedDay: $selectedDay)
+                }
+                Section("Hours") {
+                    HourPicker(label: "Start", selectedHour: $startHour)
+                    HourPicker(label: "End", selectedHour: $endHour)
+                }
+            }
+            .navigationTitle("Add Schedule")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Add") {
+                        if let day = selectedDay {
+                            onAdd(day, startHour!, endHour!)
+                        }
+                        dismiss()
+                    }
+                    .disabled(!isValid)
+                }
+            }
+        }
+    }
+}
